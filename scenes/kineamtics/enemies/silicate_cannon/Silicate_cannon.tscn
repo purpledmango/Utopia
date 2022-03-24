@@ -1,0 +1,139 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://assets/spritesheets/canon_silicate.png" type="Texture" id=1]
+[ext_resource path="res://scenes/kineamtics/enemies/silicate_cannon/Silicate_cannon.gd" type="Script" id=2]
+[ext_resource path="res://assets/sprites/enemy_hp_green_fill.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/enemy_hp_outline.png" type="Texture" id=4]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform bool active = false;
+
+void fragment() {
+	vec4 previous_color = texture(TEXTURE, UV);
+	vec4 white_color = vec4(1.0, 1.0, 1.0, previous_color.a);
+	vec4 new_color = previous_color;
+	if (active == true)
+	{
+		new_color = white_color
+	}
+	COLOR = new_color;
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+shader = SubResource( 1 )
+shader_param/active = false
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 14.875
+height = 5.0
+
+[sub_resource type="Animation" id=4]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 5, 6, 7, 8, 9 ]
+}
+
+[sub_resource type="Animation" id=5]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 10, 11, 12, 13, 14, 15, 16 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "hurt"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false, true, false ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4 ]
+}
+
+[node name="Silicate_cannon" type="KinematicBody2D"]
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 2 )
+texture = ExtResource( 1 )
+hframes = 18
+frame = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -1, 0 )
+shape = SubResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/attack = SubResource( 4 )
+anims/dead = SubResource( 5 )
+anims/hurt = SubResource( 6 )
+anims/idle = SubResource( 7 )
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( -14, 5 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+rotation = 1.5708
+scale = Vector2( 1, 4 )
+enabled = true
+
+[node name="hpbar" type="TextureProgress" parent="."]
+margin_left = -22.0
+margin_top = -24.0
+margin_right = 18.0
+margin_bottom = -18.0
+rect_pivot_offset = Vector2( 22, 0 )
+value = 100.0
+texture_over = ExtResource( 4 )
+texture_progress = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="hurt" from="." to="." method="_on_Silicate_cannon_hurt"]
+[connection signal="killed" from="." to="." method="_on_Silicate_cannon_killed"]
+[connection signal="update_health" from="." to="." method="_on_Silicate_cannon_update_health"]

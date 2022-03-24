@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/sprites/big_rock_3.png" type="Texture" id=1]
+
+[node name="big_rock_3" type="Sprite"]
+light_mask = 0
+z_index = 2
+texture = ExtResource( 1 )

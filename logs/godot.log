@@ -1,0 +1,16 @@
+Godot Engine v3.4.stable.official.206ba70f4 - https://godotengine.org
+OpenGL ES 2.0 Renderer: AMD Radeon Vega 3 Graphics (RAVEN2, DRM 3.41.0, 5.13.19-2-MANJARO, LLVM 13.0.1)
+OpenGL ES Batching: ON
+ 
+WARNING: Font oversampling only works with the stretch modes "Keep Width", "Keep Height" and "Expand", not "Ignore". To remove this warning, disable Rendering > Quality > Dynamic Fonts > Use Oversampling in the Project Settings.
+   at: _update_root_rect (scene/main/scene_tree.cpp:1133) - Font oversampling only works with the stretch modes "Keep Width", "Keep Height" and "Expand", not "Ignore". To remove this warning, disable Rendering > Quality > Dynamic Fonts > Use Oversampling in the Project Settings.
+ERROR: In Object of type 'KinematicBody2D': Attempt to connect nonexistent signal 'fired' to method 'Camera2D._on_Player_fired'.
+   at: connect (core/object.cpp:1462) - Condition "!signal_is_valid" is true. Returned: ERR_INVALID_PARAMETER
+ERROR: Parent node is busy setting up children, remove_node() failed. Consider using call_deferred("remove_child", child) instead.
+   at: remove_child (scene/main/node.cpp:1183) - Condition "data.blocked > 0" is true.
+ERROR: Condition "_first != nullptr" is true.
+   at: ~List (./core/self_list.h:108) - Condition "_first != nullptr" is true.
+ERROR: Condition "_first != nullptr" is true.
+   at: ~List (./core/self_list.h:108) - Condition "_first != nullptr" is true.
+WARNING: ObjectDB instances leaked at exit (run with --verbose for details).
+   at: cleanup (core/object.cpp:2064) - ObjectDB instances leaked at exit (run with --verbose for details).

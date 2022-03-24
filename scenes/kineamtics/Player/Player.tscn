@@ -1,0 +1,306 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://assets/spritesheets/astronaut.png" type="Texture" id=1]
+[ext_resource path="res://scenes/kineamtics/Player/Player.gd" type="Script" id=2]
+[ext_resource path="res://assets/textures/PNG (Transparent)/light_01.png" type="Texture" id=3]
+[ext_resource path="res://scenes/shaders/flash_attack.tres" type="Material" id=4]
+[ext_resource path="res://assets/ui/left_button.png" type="Texture" id=5]
+[ext_resource path="res://assets/ui/left_button_pressed.png" type="Texture" id=6]
+[ext_resource path="res://assets/ui/right_button_pressed.png" type="Texture" id=7]
+[ext_resource path="res://assets/ui/right_button.png" type="Texture" id=8]
+[ext_resource path="res://assets/ui/shoot_button.png" type="Texture" id=9]
+[ext_resource path="res://assets/ui/jump_button.png" type="Texture" id=10]
+[ext_resource path="res://assets/ui/jump_button_pressed.png" type="Texture" id=11]
+[ext_resource path="res://assets/ui/shoot_button_pressed.png" type="Texture" id=12]
+[ext_resource path="res://assets/ui/c_button_pressed.png" type="Texture" id=13]
+[ext_resource path="res://assets/ui/c_button.png" type="Texture" id=14]
+
+[sub_resource type="Animation" id=7]
+resource_name = "attack"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 19, 20, 21, 22 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "dead"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 23, 24, 25, 26, 27, 28 ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "fall"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 18 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:material:shader_param/active")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "idle"
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:material:shader_param/active")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "jump"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 14, 15, 16, 17 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:material:shader_param/active")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "knockback_effect"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false, true, false ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 5, 6, 7, 8, 9, 10, 11, 12 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:material:shader_param/active")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="CapsuleShape2D" id=6]
+radius = 3.79554
+height = 21.2935
+
+[node name="Player" type="KinematicBody2D"]
+position = Vector2( -6, 0 )
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+material = ExtResource( 4 )
+texture = ExtResource( 1 )
+hframes = 30
+frame = 29
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/attack = SubResource( 7 )
+anims/dead = SubResource( 8 )
+anims/fall = SubResource( 1 )
+anims/idle = SubResource( 2 )
+anims/jump = SubResource( 3 )
+anims/knockback_effect = SubResource( 4 )
+anims/run = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.132433, 0.529732 )
+shape = SubResource( 6 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.8, 0.8 )
+limit_smoothed = true
+offset_h = 0.37
+
+[node name="crosshair" type="Position2D" parent="."]
+position = Vector2( 13.303, -5.708 )
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 0.498913, -1.79534 )
+texture = ExtResource( 3 )
+texture_scale = 0.5
+color = Color( 0.470588, 0.329412, 0.329412, 1 )
+energy = 2.3
+shadow_enabled = true
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+scale = Vector2( 1, 0.5 )
+
+[node name="TouchControls" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="Control" type="Control" parent="TouchControls"]
+modulate = Color( 1, 1, 1, 0.180392 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="left_button" type="TextureButton" parent="TouchControls/Control"]
+anchor_left = 0.0609375
+anchor_top = 0.808666
+anchor_right = 0.148
+anchor_bottom = 0.922
+margin_left = -7.0
+margin_top = -3.1196
+margin_right = -6.72
+margin_bottom = -2.92001
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="right_button" type="TextureButton" parent="TouchControls/Control"]
+anchor_left = 0.162
+anchor_top = 0.799667
+anchor_right = 0.25
+anchor_bottom = 0.913667
+margin_left = 0.32
+margin_top = 0.119995
+margin_bottom = 0.0799866
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="jump_button" type="TextureButton" parent="TouchControls/Control"]
+anchor_left = 0.7375
+anchor_top = 0.8
+anchor_right = 0.825
+anchor_bottom = 0.911
+margin_bottom = 1.03998
+texture_normal = ExtResource( 10 )
+texture_pressed = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="shoot_button" type="TextureButton" parent="TouchControls/Control"]
+anchor_left = 0.8625
+anchor_top = 0.8
+anchor_right = 0.95
+anchor_bottom = 0.911
+margin_bottom = 1.03998
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="c_button" type="TextureButton" parent="TouchControls/Control"]
+anchor_left = 0.875
+anchor_top = 0.622222
+anchor_right = 0.947
+anchor_bottom = 0.733
+margin_right = -6.08002
+margin_bottom = 0.119995
+texture_normal = ExtResource( 14 )
+texture_pressed = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="fired" from="." to="Camera2D" method="_on_Player_fired"]
+[connection signal="knockback" from="." to="." method="_on_Player_knockback"]

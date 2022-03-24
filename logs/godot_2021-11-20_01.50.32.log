@@ -1,0 +1,10 @@
+Godot Engine v3.3.3.stable.official.b973f997f - https://godotengine.org
+OpenGL ES 2.0 Renderer: AMD Radeon Vega 3 Graphics (RAVEN2, DRM 3.41.0, 5.13.19-2-MANJARO, LLVM 13.0.0)
+OpenGL ES Batching: ON
+ 
+**WARNING**: Font oversampling only works with the stretch modes "Keep Width", "Keep Height" and "Expand", not "Ignore". To remove this warning, disable Rendering > Quality > Dynamic Fonts > Use Oversampling in the Project Settings.
+   At: scene/main/scene_tree.cpp:1161:_update_root_rect() - Font oversampling only works with the stretch modes "Keep Width", "Keep Height" and "Expand", not "Ignore". To remove this warning, disable Rendering > Quality > Dynamic Fonts > Use Oversampling in the Project Settings.
+**ERROR**: In Object of type 'KinematicBody2D': Attempt to connect nonexistent signal 'fired' to method 'Camera2D._on_Player_fired'.
+   At: core/object.cpp:1500:connect() - Condition "!signal_is_valid" is true. Returned: ERR_INVALID_PARAMETER
+**ERROR**: Invalid icon file format!
+   At: platform/windows/os_windows.cpp:3014:set_native_icon() - Condition "icon_dir->idType != 1" is true.

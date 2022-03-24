@@ -1,0 +1,110 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://themes/Menu.tres" type="Theme" id=1]
+[ext_resource path="res://assets/background/menu_background.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/button.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/button_hover.png" type="Texture" id=4]
+[ext_resource path="res://scenes/ui/end_credits/EndScreen.gd" type="Script" id=5]
+
+[node name="EndScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+centered = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.387
+anchor_top = 0.194333
+anchor_right = 0.954188
+anchor_bottom = 0.883333
+margin_left = -7.68
+margin_top = -7.96001
+margin_right = 0.319977
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Retry" type="TextureButton" parent="VBoxContainer"]
+margin_right = 371.0
+margin_bottom = 44.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="VBoxContainer/Retry"]
+anchor_left = 0.061
+anchor_top = 0.182
+anchor_right = 0.162
+anchor_bottom = 0.909
+margin_left = 7.96
+margin_top = -0.00800037
+margin_right = 50.368
+margin_bottom = 0.0039978
+custom_colors/font_color = Color( 0.94902, 0.0901961, 0.360784, 1 )
+custom_colors/font_color_shadow = Color( 0.882353, 0.0666667, 0.0666667, 1 )
+text = "Retry"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quit" type="TextureButton" parent="VBoxContainer"]
+margin_top = 48.0
+margin_right = 371.0
+margin_bottom = 92.0
+texture_normal = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="VBoxContainer/Quit"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 39.0
+margin_top = 9.0
+margin_right = -46.0
+margin_bottom = -3.0
+custom_colors/font_color = Color( 0.94902, 0.0901961, 0.360784, 1 )
+custom_colors/font_color_shadow = Color( 0.882353, 0.0666667, 0.0666667, 1 )
+text = "Quit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GAME OVER" type="Label" parent="VBoxContainer"]
+margin_top = 96.0
+margin_right = 371.0
+margin_bottom = 128.0
+
+[node name="GAME OVER3" type="Label" parent="VBoxContainer"]
+margin_top = 132.0
+margin_right = 371.0
+margin_bottom = 164.0
+
+[node name="GAME OVER4" type="Label" parent="VBoxContainer"]
+margin_top = 168.0
+margin_right = 371.0
+margin_bottom = 200.0
+
+[node name="GAME OVER2" type="Label" parent="VBoxContainer"]
+margin_top = 204.0
+margin_right = 371.0
+margin_bottom = 236.0
+text = "Test Build OVER"
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_top = 240.0
+margin_right = 371.0
+margin_bottom = 272.0
+text = "Next Build Coming Soon"
+
+[connection signal="pressed" from="VBoxContainer/Retry" to="." method="_on_Retry_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
